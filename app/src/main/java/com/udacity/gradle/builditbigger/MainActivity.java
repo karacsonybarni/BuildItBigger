@@ -1,6 +1,6 @@
 package com.udacity.gradle.builditbigger;
 
-import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -8,19 +8,16 @@ import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.udacity.android.joker.JokerActivity;
-import com.udacity.joker.Joker;
-
 
 public class MainActivity extends AppCompatActivity {
 
-    private Joker joker;
+    private AsyncTask<Void, Void, String> jokerTask;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        joker = new Joker();
+        jokerTask = new EndpointsAsyncTask(this);
     }
 
 
@@ -47,10 +44,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void tellJoke(View view) {
-        Intent intent = new Intent(this, JokerActivity.class);
-        intent.putExtra(JokerActivity.JOKE_EXTRA, joker.getJoke());
-        startActivity(intent);
+        jokerTask.execute();
     }
-
-
 }
