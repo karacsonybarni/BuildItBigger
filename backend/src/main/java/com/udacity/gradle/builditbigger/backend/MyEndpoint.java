@@ -18,18 +18,15 @@ public class MyEndpoint {
 
     private Joker joker;
 
+    public MyEndpoint() {
+        joker = new Joker();
+    }
+
     /** A simple endpoint method that takes a name and says Hi back */
     @ApiMethod(name = "getJoke")
     public MyBean getJoke() {
         MyBean response = new MyBean();
-        response.setData(getJoker().getJoke());
+        response.setData(joker.getJoke());
         return response;
-    }
-
-    public Joker getJoker() {
-        if (joker == null) {
-            joker = new Joker();
-        }
-        return joker;
     }
 }
