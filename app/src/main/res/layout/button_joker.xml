@@ -3,10 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <Button
+        android:id="@+id/jokeButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/instructions_text_view"
-        android:onClick="tellJoke"
         android:text="@string/button_text"
         app:layout_constraintStart_toStartOf="@+id/instructions_text_view"
         app:layout_constraintTop_toBottomOf="@+id/instructions_text_view" />
