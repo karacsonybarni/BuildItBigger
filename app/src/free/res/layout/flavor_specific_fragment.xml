@@ -20,6 +20,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <include layout="@layout/button_joker" />
+    <include layout="@layout/shared_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

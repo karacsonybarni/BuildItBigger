@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 
@@ -19,6 +20,7 @@ import java.util.Objects;
 public class MainActivityFragment extends Fragment implements EndpointsResultListener {
 
     private EndpointsAsyncTask jokerTask;
+    private ProgressBar spinner;
     private String joke;
     private boolean shouldShowJoke;
 
@@ -30,8 +32,13 @@ public class MainActivityFragment extends Fragment implements EndpointsResultLis
                              Bundle savedInstanceState) {
         View root =
                 inflater.inflate(R.layout.flavor_specific_fragment, container, false);
-        initJokeButton(root);
+        initViews(root);
         return root;
+    }
+
+    private void initViews(View root) {
+        initJokeButton(root);
+        spinner = root.findViewById(R.id.progressBar);
     }
 
     private void initJokeButton(View root) {
@@ -44,6 +51,7 @@ public class MainActivityFragment extends Fragment implements EndpointsResultLis
             jokerTask = new EndpointsAsyncTask(this);
             jokerTask.execute();
         }
+        spinner.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -59,6 +67,7 @@ public class MainActivityFragment extends Fragment implements EndpointsResultLis
             shouldShowJoke = true;
         } else {
             startJokerActivity();
+            spinner.setVisibility(View.GONE);
             joke = null;
             shouldShowJoke = false;
         }
