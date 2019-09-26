@@ -1,6 +1,5 @@
 package com.udacity.gradle.builditbigger;
 
-import androidx.test.espresso.IdlingRegistry;
 import androidx.test.rule.ActivityTestRule;
 
 import com.udacity.gradle.builditbigger.endpointstask.EndpointsAsyncTask;

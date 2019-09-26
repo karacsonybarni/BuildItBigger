@@ -73,3 +73,21 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     androidTestImplementation 'org.assertj:assertj-core:3.13.2'
 }
+
+task appengineStart {
+    dependsOn ':backend:appengineStart'
+}
+
+task appengineStop {
+    dependsOn ':backend:appengineStop'
+}
+
+task uiTest {
+    dependsOn ':app:connectedAndroidTest'
+}
+
+task gceTest {
+    dependsOn = [appengineStart, uiTest, appengineStop]
+    uiTest.mustRunAfter appengineStart
+    appengineStop.mustRunAfter uiTest
+}
