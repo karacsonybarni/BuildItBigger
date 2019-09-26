@@ -3,7 +3,7 @@
     package="com.udacity.android.joker">
 
     <application>
-        <activity android:name=".JokerActivity"></activity>
+        <activity android:name=".JokerActivity" />
     </application>
 
 </manifest>

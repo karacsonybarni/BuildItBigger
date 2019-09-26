@@ -46,7 +46,7 @@ public class MainActivityFragment extends Fragment implements EndpointsResultLis
         jokeButton.setOnClickListener(v -> onJokeButtonClicked());
     }
 
-    protected void onJokeButtonClicked() {
+    void onJokeButtonClicked() {
         if (jokerTask == null || jokerTask.isCompleted()) {
             jokerTask = new EndpointsAsyncTask(this);
             jokerTask.execute();
