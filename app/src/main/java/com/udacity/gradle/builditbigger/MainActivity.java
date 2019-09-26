@@ -4,10 +4,15 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.VisibleForTesting;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 
 public class MainActivity extends AppCompatActivity {
+
+    private MainActivityFragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,5 +40,16 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment fragment) {
+        super.onAttachFragment(fragment);
+        this.fragment = (MainActivityFragment) fragment;
+    }
+
+    @VisibleForTesting
+    MainActivityFragment getFragment() {
+        return fragment;
     }
 }
