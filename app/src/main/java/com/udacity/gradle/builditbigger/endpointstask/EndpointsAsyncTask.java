@@ -2,9 +2,12 @@ package com.udacity.gradle.builditbigger.endpointstask;
 
 import android.os.AsyncTask;
 
+import androidx.annotation.VisibleForTesting;
+
 import com.google.api.client.extensions.android.json.AndroidJsonFactory;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.udacity.gradle.builditbigger.backend.myApi.MyApi;
+import com.udacity.gradle.builditbigger.backend.myApi.model.Joke;
 
 import java.io.IOException;
 
@@ -13,6 +16,7 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
     private static MyApi myApiService;
     private EndpointsResultListener listener;
     private boolean isCompleted;
+    private boolean isResultValid;
 
     public EndpointsAsyncTask(EndpointsResultListener listener) {
         this.listener = listener;
@@ -25,7 +29,9 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
         }
 
         try {
-            return myApiService.getJoke().execute().getData();
+            Joke joke = myApiService.getJoke().execute();
+            isResultValid = joke.getValid();
+            return joke.getJoke();
         } catch (IOException e) {
             return e.getMessage();
         }
@@ -49,5 +55,10 @@ public class EndpointsAsyncTask extends AsyncTask<Void, Void, String> {
 
     public boolean isCompleted() {
         return isCompleted;
+    }
+
+    @VisibleForTesting
+    protected boolean isResultValid() {
+        return isResultValid;
     }
 }
