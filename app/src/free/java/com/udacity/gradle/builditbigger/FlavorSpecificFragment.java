@@ -15,7 +15,6 @@ import java.util.Objects;
 
 public class FlavorSpecificFragment extends MainActivityFragment {
 
-    private static final String AD_UNIT_ID = "ca-app-pub-3940256099942544/1033173712";
     private View rootView;
     private InterstitialAd interstitialAd;
 
@@ -38,13 +37,13 @@ public class FlavorSpecificFragment extends MainActivityFragment {
     }
 
     private void initAdView(AdRequest adRequest) {
-        AdView mAdView = rootView.findViewById(R.id.adView);
-        mAdView.loadAd(adRequest);
+        AdView adView = rootView.findViewById(R.id.adView);
+        adView.loadAd(adRequest);
     }
 
     private void initInterstitialAd(AdRequest adRequest) {
         interstitialAd = new InterstitialAd(Objects.requireNonNull(getContext()));
-        interstitialAd.setAdUnitId(AD_UNIT_ID);
+        interstitialAd.setAdUnitId(getString(R.string.interstitial_ad_unit_id));
         interstitialAd.loadAd(adRequest);
         interstitialAd.setAdListener(new AdListener() {
             @Override

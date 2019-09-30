@@ -42,9 +42,6 @@ android {
             dimension "version"
             applicationIdSuffix ".free"
             versionNameSuffix "-free"
-            dependencies {
-                implementation 'com.google.android.gms:play-services-ads:18.2.0'
-            }
         }
         paid {
             dimension "version"
@@ -68,6 +65,8 @@ dependencies {
     implementation 'com.google.code.findbugs:jsr305:3.0.2'
     implementation project(":backend")
     implementation project(":android-joker")
+
+    freeImplementation 'com.google.android.gms:play-services-ads:18.2.0'
 
     androidTestImplementation 'androidx.test:rules:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
